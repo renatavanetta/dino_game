@@ -4,12 +4,47 @@ export class Character {
         this.y = y;
     }
 
-    walk() {
+    walk(scenario_width, scenario_height) {
+        let canvas = document.getElementById('dino-char');
+        let ctx = canvas.getContext('2d');
+
+        let dino0 = new Image();
+        let dino1 = new Image();
+
+        dino0.src = '../images/dino-run-0.png';
+        dino1.sec = '../images/dino-run-1.png';
+
+        setInterval(() => {
+
+
+            function runningDino(){
+                let imgArray = new Array();
+                imgArray[0] = new Image();
+                imgArray[0].src = '../images/dino-run-0.png';
+                imgArray[1] = new Image();
+                imgArray[1].src = '../images/dino-run-1.png';
+
+
+
+
+
+                dino1.onload = function() {
+                    ctx.drawImage(dino1, 0, 0);
+                }
+                dino2.onload = function() {
+                    ctx.drawImage(dino2, 0, 0);
+                }
+            }
+            
+            runningDino()
+        }, 10);
+
+        runningDino()
 
     }
 
     jump(){
-        
+
     }
 
     duck() {

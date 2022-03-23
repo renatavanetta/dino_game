@@ -11,14 +11,17 @@ let gameOver = false;
 let gameStarted = false;
 
 let dino = new Character(0, 0);
-dino.still();
+//dino.still();
 
 function startGame() {
     gameStarted = true;
 
     Ground();
     Cactus();
-
+    dino.walk(scenario_width, scenario_height);
+    /*if(!jumping || !gameOver){
+        dino.walk(scenario_width, scenario_height);
+    }*/
 
     let startTimeOut = setTimeout(function() {
         // IMPLEMENTAR - dino da um pulinho;
