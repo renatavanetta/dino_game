@@ -1,55 +1,42 @@
 export class Character {
-    constructor(x, y) {
+    constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
     walk(scenario_width, scenario_height) {
         let canvas = document.getElementById('dino-char');
         let ctx = canvas.getContext('2d');
-
-        let dino0 = new Image();
-        let dino1 = new Image();
-
-        dino0.src = '../images/dino-run-0.png';
-        dino1.sec = '../images/dino-run-1.png';
+        let imageArray = ['../images/dino-run-0.png', '../images/dino-run-1.png']
 
         setInterval(() => {
 
-
             function runningDino(){
-                let imgArray = new Array();
-                imgArray[0] = new Image();
-                imgArray[0].src = '../images/dino-run-0.png';
-                imgArray[1] = new Image();
-                imgArray[1].src = '../images/dino-run-1.png';
-
-
-
-
-
-                dino1.onload = function() {
-                    ctx.drawImage(dino1, 0, 0);
-                }
-                dino2.onload = function() {
-                    ctx.drawImage(dino2, 0, 0);
-                }
+                 for(let x = 0; x < imageArray.length; x++){
+                     console.log(imageArray[x])
+                     console.log(imageArray.length)
+                     var dinoImage = new Image();
+                     dinoImage.src = imageArray[x];
+                     dinoImage.onload = function() {
+                         ctx.drawImage(dinoImage, this.x, this.y, this.width, this.length);
+                     }
+                 }
             }
             
             runningDino()
-        }, 10);
 
-        runningDino()
-
+        }, 100);
     }
 
-    jump(){
+    /*jump(){
 
     }
 
     duck() {
 
-    }
+    }*/
 
     still() {        
         
@@ -59,9 +46,8 @@ export class Character {
         let img = new Image();
         img.src = '../images/dino-stationary.png';
 
-        
         img.onload = function() {
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(img, this.x, this.y, this.width, this.height);
         }
     }
 }

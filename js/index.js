@@ -9,19 +9,24 @@ console.log(scenario_height)
 
 let gameOver = false;
 let gameStarted = false;
+let jumping = false;
+let dino = new Character(0, 0, 88, 94);
 
-let dino = new Character(0, 0);
-//dino.still();
+window.onload = function() {
+   //dino.still();
+   //dino.walk(scenario_width, scenario_height)
+}
 
 function startGame() {
     gameStarted = true;
 
     Ground();
     Cactus();
-    dino.walk(scenario_width, scenario_height);
-    /*if(!jumping || !gameOver){
+    //dino.walk(scenario_width, scenario_height);
+    if(!jumping && !gameOver){
+
         dino.walk(scenario_width, scenario_height);
-    }*/
+    }
 
     let startTimeOut = setTimeout(function() {
         // IMPLEMENTAR - dino da um pulinho;
@@ -97,7 +102,8 @@ function Cactus() {
         
             let cactusTimeOut = setTimeout(function() {
                 // se a posição do obstaculo for maior que 0 e menor que a posição do dino e o botton do dino estiver abaixo da altura do obstaculo = game over
-                if(scroll > 0 &&  scroll < 88 && dino.y < 70){
+
+                if(scroll > 0 && scroll < 88 && dino.y < 70){
                     gameOver = true;
                     clearTimeout(cactusTimeOut);
                     //alert('Game Over');
