@@ -15,6 +15,7 @@ let dino = new Character(0, 0, 88, 94);
 window.onload = function() {
    //dino.still();
    //dino.walk(scenario_width, scenario_height)
+   //startGame()
 }
 
 function startGame() {
@@ -24,7 +25,7 @@ function startGame() {
     Cactus();
     //dino.walk(scenario_width, scenario_height);
     if(!jumping && !gameOver){
-
+        //dino.still();
         dino.walk(scenario_width, scenario_height);
     }
 
