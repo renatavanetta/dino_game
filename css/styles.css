@@ -65,8 +65,7 @@ h1 {
 
 .cactus {
     position: absolute;
-    width: 34px;
-    height: 70px;
+    top: 0;
 }
 
 footer {

@@ -4,18 +4,18 @@ import { Character } from "../js/Character.js";
 let scenario_height = 200;
 let scenario_width = 800;
 
-console.log(scenario_width)
-console.log(scenario_height)
-
 let gameOver = false;
 let gameStarted = false;
 let jumping = false;
+
+let SpriteSheet = document.getElementById('dinoSpriteSheet');
 let dino = new Character(0, 112, 88, 94);
+
 
 window.onload = function() {
    dino.still();
-   //dino.walk(scenario_width, scenario_height)
-   //startGame()
+   
+   //dino.run(SpriteSheet);
 }
 
 function startGame() {
@@ -25,59 +25,55 @@ function startGame() {
     Cactus();
     //dino.walk(scenario_width, scenario_height);
     if(!jumping && !gameOver){
-        //dino.still();
-        //dino.run(scenario_width, scenario_height);
+        dino.run(SpriteSheet);
     }
 
-    let startTimeOut = setTimeout(function() {
+    /*let startTimeOut = setTimeout(function() {
         // IMPLEMENTAR - dino da um pulinho;
           
         if(gameOver){
             clearTimeout(startTimeOut)
         }
 
-    }, 50);
+    }, 50);*/
 
     
 }  
 
-function Ground(){
+function Ground() {
     let ground_canvas = document.getElementById('ground-canvas');
     let ctx = ground_canvas.getContext('2d');
 
     let ground_canvas_height = ground_canvas.scrollHeight;
     let ground_canvas_width = ground_canvas.scrollWidth;
 
+
     let scroll = 0;
-    let speed = 1; 
-    let ground = new Image();
-    ground.src = '../images/ground.png'
+    let speed = 1;
 
-    ground.onload = function () {
-        
-        function draw() {
-            ctx.clearRect(0,0, ground_canvas_width, ground_canvas_height);
+    let ground = document.getElementById('dinoSpriteSheet');
 
-            if(scroll >= ground_canvas_width - speed){
-                scroll = 0;
-            }
 
-            scroll += speed;
+    function draw() {
+        ctx.clearRect(0, 0, ground_canvas_width, ground_canvas_height);
 
-            ctx.drawImage(ground, -scroll, ground_canvas_height-ground.height, ground_canvas_width + (ground_canvas_width * 5) / 176, 24);
-            ctx.drawImage(ground, ground_canvas_width - scroll, ground_canvas_height-ground.height, ground_canvas_width + (ground_canvas_width * 5) / 176, 24);
-        
-            let groundTimeOut = setTimeout(function() {
-                draw();
-            }, 5);
-
-            if(gameOver){
-                clearTimeout(groundTimeOut)
-            }
+        if (scroll >= ground_canvas_width - speed) {
+            scroll = 0;
         }
 
-        draw()
+        scroll += speed;
+        //ctx.drawImage(SpriteSheet, 0, 100, 2404, 50, 0, ctx.canvas.height - 25 , 2404, 25)
+        //ground_canvas_width + (ground_canvas_width * 5) / 176
+        ctx.drawImage(ground, 0, 100, 2404, 50, -scroll, ground_canvas_height - 25, ground_canvas_width + (ground_canvas_width * 5) / 176, 25);
+        ctx.drawImage(ground, 0, 100, 2404, 50, ground_canvas_width - scroll, ground_canvas_height - 25, ground_canvas_width + (ground_canvas_width * 5) / 176, 25);
     }
+
+    let groundTimeOut = setInterval(draw, 5);
+
+    if (gameOver) {
+        clearTimeout(groundTimeOut)
+    }
+
 }
 
 function Cactus() {

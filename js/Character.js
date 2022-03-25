@@ -6,39 +6,44 @@ export class Character {
         this.height = height;
     }
 
-    run(scenario_width, scenario_height) {
+    run(SpriteSheet) {
         let canvas = document.getElementById('dino-char');
         let ctx = canvas.getContext('2d');
-        let imageArray = ['../images/dino-run-0.png', '../images/dino-run-1.png']
-        let dino_canvas_height = canvas.scrollHeight;
-        let dino_canvas_width = canvas.scrollWidth;
 
-
-        function runningDino() {
-            console.log(ctx.canvas.width)
-            for (let x = 0; x < imageArray.length; x++) {
-                console.log(imageArray[x])
-                var dinoImage = new Image();
-                dinoImage.src = imageArray[x];
-
-                //ajustar o tempo do for. settimeout draw img. talvez uma por uma com dois drawImage.
-
-                dinoImage.onload = function () {
-                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                    ctx.drawImage(dinoImage, 0, 112, 88, 94);
-                }
+        let runningDino = [
+            {
+                sx: 1510,
+                sy: 0,
+                sWidth: 88,
+                sHeight: 100,
+                x: 0,
+                y: 112,
+                dWidth: 88,
+                dHeight: 94,
+            },
+            {
+                sx: 1600,
+                sy: 0,
+                dWidth: 88,
+                dHeight: 100,
+                x: 0,
+                y: 112,
+                dWidth: 88,
+                dHeight: 94,
             }
+        ]
 
+        function runDino() {
+                console.log('entrando aqui')
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.drawImage(SpriteSheet, runningDino[0].sx, runningDino[0].sy, runningDino[0].sWidth, runningDino[0].sHeight, runningDino[0].x, runningDino[0].y, runningDino[0].dWidth, runningDino[0].dHeight); 
+                ctx.drawImage(SpriteSheet, runningDino[1].sx, runningDino[1].sy, runningDino[1].sWidth, runningDino[1].sHeight, runningDino[1].x, runningDino[1].y, runningDino[1].dWidth, runningDino[1].dHeight);   
         }
 
-        setTimeout(
-            runningDino
-        , 200);
-
-       // runningDino()
+        setInterval(runDino, 50);
     }
 
-    jump(jumping, dino){
+    /*jump(jumping, dino){
         let gravity = 1
         let canvas = document.getElementById('dino-char');
         let ctx = canvas.getContext('2d');
@@ -74,15 +79,15 @@ export class Character {
 
     duck() {
 
-    }
+    }*/
 
     still() {
 
         let dino_canvas = document.getElementById('dino-char');
         let ctx = dino_canvas.getContext('2d');
-        let img=  document.getElementById('dino');
+        let SpriteSheet = document.getElementById('dinoSpriteSheet');
 
-            ctx.drawImage(img, this.x, this.y, this.width, this.height); //this nao funcionando
+        ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, this.x, this.y, this.width, this.height); 
         
     }
 }
