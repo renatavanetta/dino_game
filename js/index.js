@@ -82,11 +82,13 @@ function Ground(){
 
 function Cactus() {
     
-    let randomNumber = Math.floor(Math.random() * (4000 - 1000) + 1000);
+    let randomNumber = Math.floor(Math.random() * (6000 - 1000) + 1000);
     console.log(randomNumber)
     
     let cactus = document.getElementById('cactus_img');
     let ctx_cactus = cactus.getContext('2d');
+
+    // criar objeto cactus com cactos variados
 
     let cactus_img = new Image();
     cactus_img.src = '../images/cactus.png';
@@ -100,21 +102,23 @@ function Cactus() {
 
             scroll -= speed;
             ctx_cactus.drawImage(cactus_img, scroll, (scenario_height - cactus_img.height));
-        
+
             let cactusTimeOut = setTimeout(function() {
                 // se a posição do obstaculo for maior que 0 e menor que a posição do dino e o botton do dino estiver abaixo da altura do obstaculo = game over
-
-                if(scroll > 0 && scroll < 88 && dino.y < 70){
+    
+                /*if(scroll > 0 && scroll < 88 && dino.y < 70){
                     gameOver = true;
                     clearTimeout(cactusTimeOut);
                     //alert('Game Over');
                     // botao restart game
-                }
-
+                }*/
+    
                 moveCactus()
-
+    
             }, 5);
 
+            return;
+            
         }
 
         // gerar cactos aleatoriamente

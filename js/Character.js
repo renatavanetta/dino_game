@@ -29,12 +29,13 @@ export class Character {
                 }
             }
 
-            setTimeout(() => {
-                runningDino();
-            }, 200);
         }
 
-        runningDino()
+        setTimeout(
+            runningDino
+        , 200);
+
+       // runningDino()
     }
 
     jump(jumping, dino){
@@ -53,7 +54,7 @@ export class Character {
             }
         }
 
-        /*function down() {
+        function down() {
             gravity -= 0.5;
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             ctx.drawImage(0, -gravity, 88, 94);
@@ -62,7 +63,7 @@ export class Character {
                 jumping = false;
                 run()
             }
-        }*/
+        }
 
         setTimeout(() => {
             up()
@@ -70,21 +71,18 @@ export class Character {
 
         up()
     }
-/*
+
     duck() {
 
-    }*/
+    }
 
     still() {
 
         let dino_canvas = document.getElementById('dino-char');
         let ctx = dino_canvas.getContext('2d');
+        let img=  document.getElementById('dino');
 
-        let img = new Image();
-        img.src = '../images/dino-stationary.png';
-
-        img.onload = function () {
             ctx.drawImage(img, this.x, this.y, this.width, this.height); //this nao funcionando
-        }
+        
     }
 }

@@ -1,6 +1,6 @@
 class Cactus {
-    constructor(cactus){
-        this.cactus = cactus;
+    constructor(cactusArray){
+        this.cactuArray = cactusArray;
     }
 
     
