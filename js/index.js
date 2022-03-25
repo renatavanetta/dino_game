@@ -10,10 +10,10 @@ console.log(scenario_height)
 let gameOver = false;
 let gameStarted = false;
 let jumping = false;
-let dino = new Character(0, 0, 88, 94);
+let dino = new Character(0, 112, 88, 94);
 
 window.onload = function() {
-   //dino.still();
+   dino.still();
    //dino.walk(scenario_width, scenario_height)
    //startGame()
 }
@@ -26,7 +26,7 @@ function startGame() {
     //dino.walk(scenario_width, scenario_height);
     if(!jumping && !gameOver){
         //dino.still();
-        dino.walk(scenario_width, scenario_height);
+        //dino.run(scenario_width, scenario_height);
     }
 
     let startTimeOut = setTimeout(function() {
@@ -133,6 +133,11 @@ function generateRandomCactus() {
 document.addEventListener("keydown", function(event) {
     switch(event.key){
         case 'ArrowUp':
-        case ' ': if(gameStarted == false) startGame(); break;
+        case ' ': 
+        if(gameStarted == false){
+            startGame(); break;
+        } else {
+            dino.jump(jumping, dino);
+        }
     }
 })

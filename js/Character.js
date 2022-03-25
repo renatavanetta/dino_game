@@ -6,7 +6,7 @@ export class Character {
         this.height = height;
     }
 
-    walk(scenario_width, scenario_height) {
+    run(scenario_width, scenario_height) {
         let canvas = document.getElementById('dino-char');
         let ctx = canvas.getContext('2d');
         let imageArray = ['../images/dino-run-0.png', '../images/dino-run-1.png']
@@ -25,22 +25,52 @@ export class Character {
 
                 dinoImage.onload = function () {
                     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                    ctx.drawImage(dinoImage, 0, 0, 88, 94);
+                    ctx.drawImage(dinoImage, 0, 112, 88, 94);
                 }
-
-                setTimeout(() => {
-                    //runningDino();
-                }, 200);
             }
+
+            setTimeout(() => {
+                runningDino();
+            }, 200);
         }
 
         runningDino()
     }
 
-    /*jump(){
+    jump(jumping, dino){
+        let gravity = 1
+        let canvas = document.getElementById('dino-char');
+        let ctx = canvas.getContext('2d');
+        
+        function up() {
+            jumping = true;
+            gravity += 0.5;
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.drawImage(0, (ctx.canvas.height - dino.height) +gravity, 88, 94);
 
+            if(dino.y == ctx.canvas.height){
+               // down();
+            }
+        }
+
+        /*function down() {
+            gravity -= 0.5;
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.drawImage(0, -gravity, 88, 94);
+
+            if(dino.y == 0){
+                jumping = false;
+                run()
+            }
+        }*/
+
+        setTimeout(() => {
+            up()
+        }, 200);
+
+        up()
     }
-
+/*
     duck() {
 
     }*/
@@ -54,7 +84,7 @@ export class Character {
         img.src = '../images/dino-stationary.png';
 
         img.onload = function () {
-            ctx.drawImage(img, this.x, this.y, this.width, this.height);
+            ctx.drawImage(img, this.x, this.y, this.width, this.height); //this nao funcionando
         }
     }
 }
