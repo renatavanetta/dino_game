@@ -11,10 +11,11 @@ let jumping = false;
 let SpriteSheet = document.getElementById('dinoSpriteSheet');
 let dino = new Character(0, 112, 88, 94);
 
+let canvas = document.getElementById('dino-char');
+let ctx = canvas.getContext('2d');
 
 window.onload = function() {
    dino.still();
-   
    //dino.run(SpriteSheet);
 }
 
@@ -27,6 +28,7 @@ function startGame() {
     if(!jumping && !gameOver){
         dino.run(SpriteSheet);
     }
+    
 
     /*let startTimeOut = setTimeout(function() {
         // IMPLEMENTAR - dino da um pulinho;
@@ -62,23 +64,22 @@ function Ground() {
         }
 
         scroll += speed;
-        //ctx.drawImage(SpriteSheet, 0, 100, 2404, 50, 0, ctx.canvas.height - 25 , 2404, 25)
-        //ground_canvas_width + (ground_canvas_width * 5) / 176
+
         ctx.drawImage(ground, 0, 100, 2404, 50, -scroll, ground_canvas_height - 25, ground_canvas_width + (ground_canvas_width * 5) / 176, 25);
         ctx.drawImage(ground, 0, 100, 2404, 50, ground_canvas_width - scroll, ground_canvas_height - 25, ground_canvas_width + (ground_canvas_width * 5) / 176, 25);
     }
 
-    let groundTimeOut = setInterval(draw, 5);
+    let groundInterval = setInterval(draw, 5);
 
     if (gameOver) {
-        clearTimeout(groundTimeOut)
+        clearInterval(groundInterval);
     }
 
 }
 
 function Cactus() {
     
-    let randomNumber = Math.floor(Math.random() * (6000 - 1000) + 1000);
+    let randomNumber = Math.floor(Math.random() * (4000 - 500) + 500);
     console.log(randomNumber)
     
     let cactus = document.getElementById('cactus_img');
@@ -98,31 +99,27 @@ function Cactus() {
 
             scroll -= speed;
             ctx_cactus.drawImage(cactus_img, scroll, (scenario_height - cactus_img.height));
-
-            let cactusTimeOut = setTimeout(function() {
-                // se a posição do obstaculo for maior que 0 e menor que a posição do dino e o botton do dino estiver abaixo da altura do obstaculo = game over
     
-                /*if(scroll > 0 && scroll < 88 && dino.y < 70){
-                    gameOver = true;
-                    clearTimeout(cactusTimeOut);
-                    //alert('Game Over');
-                    // botao restart game
-                }*/
-    
-                moveCactus()
-    
-            }, 5);
-
-            return;
-            
         }
 
-        // gerar cactos aleatoriamente
-        setTimeout(() => {
-            Cactus()
-        }, randomNumber);
+        let cactusTimeOut = setInterval(function() {
+            // se a posição do obstaculo for maior que 0 e menor que a posição do dino e o botton do dino estiver abaixo da altura do obstaculo = game over
 
-        moveCactus();
+            /*if(scroll > 0 && scroll < 88 && dino.y < 70){
+                gameOver = true;
+                clearTimeout(cactusTimeOut);
+                //alert('Game Over');
+                // botao restart game
+            }*/
+
+            moveCactus()
+
+        }, 5);
+
+        // gerar cactos aleatoriamente
+        setTimeout(Cactus, randomNumber);
+
+        //moveCactus();
     }
 }
 

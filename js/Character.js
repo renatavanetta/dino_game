@@ -9,38 +9,20 @@ export class Character {
     run(SpriteSheet) {
         let canvas = document.getElementById('dino-char');
         let ctx = canvas.getContext('2d');
-
-        let runningDino = [
-            {
-                sx: 1510,
-                sy: 0,
-                sWidth: 88,
-                sHeight: 100,
-                x: 0,
-                y: 112,
-                dWidth: 88,
-                dHeight: 94,
-            },
-            {
-                sx: 1600,
-                sy: 0,
-                dWidth: 88,
-                dHeight: 100,
-                x: 0,
-                y: 112,
-                dWidth: 88,
-                dHeight: 94,
-            }
-        ]
+        let control = false;
 
         function runDino() {
-                console.log('entrando aqui')
-                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                ctx.drawImage(SpriteSheet, runningDino[0].sx, runningDino[0].sy, runningDino[0].sWidth, runningDino[0].sHeight, runningDino[0].x, runningDino[0].y, runningDino[0].dWidth, runningDino[0].dHeight); 
-                ctx.drawImage(SpriteSheet, runningDino[1].sx, runningDino[1].sy, runningDino[1].sWidth, runningDino[1].sHeight, runningDino[1].x, runningDino[1].y, runningDino[1].dWidth, runningDino[1].dHeight);   
-        }
+                if(control == false){
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    ctx.drawImage(SpriteSheet, 1510, 0, 88, 100, 0, 112, 88, 94);
+                    control = true;
+                }else{
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    ctx.drawImage(SpriteSheet, 1600, 0, 88, 100, 0, 112, 88, 94); 
+                    control = false;
+                } 
 
-        setInterval(runDino, 50);
+        setInterval(runDino, 120);
     }
 
     /*jump(jumping, dino){
@@ -82,12 +64,10 @@ export class Character {
     }*/
 
     still() {
-
         let dino_canvas = document.getElementById('dino-char');
         let ctx = dino_canvas.getContext('2d');
         let SpriteSheet = document.getElementById('dinoSpriteSheet');
 
-        ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, this.x, this.y, this.width, this.height); 
-        
+        ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, this.x, this.y, this.width, this.height);    
     }
 }
