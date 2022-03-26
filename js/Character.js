@@ -12,15 +12,16 @@ export class Character {
         let control = false;
 
         function runDino() {
-                if(control == false){
-                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                    ctx.drawImage(SpriteSheet, 1510, 0, 88, 100, 0, 112, 88, 94);
-                    control = true;
-                }else{
-                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                    ctx.drawImage(SpriteSheet, 1600, 0, 88, 100, 0, 112, 88, 94); 
-                    control = false;
-                } 
+            if (control == false) {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.drawImage(SpriteSheet, 1510, 0, 88, 100, 0, 112, 88, 94);
+                control = true;
+            } else {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.drawImage(SpriteSheet, 1600, 0, 88, 100, 0, 112, 88, 94);
+                control = false;
+            }
+        }
 
         setInterval(runDino, 120);
     }
@@ -68,6 +69,7 @@ export class Character {
         let ctx = dino_canvas.getContext('2d');
         let SpriteSheet = document.getElementById('dinoSpriteSheet');
 
-        ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, this.x, this.y, this.width, this.height);    
+        ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, this.x, this.y, this.width, this.height);
     }
+
 }
