@@ -22,7 +22,7 @@ h1 {
     background-color: white;
     opacity: 0.8;
     width: 800px;
-    height: 200px;
+    height: 300px;
     position: fixed;
     left: 50%;
     top: 35%;
@@ -38,7 +38,7 @@ h1 {
 
 .ground {
     position: absolute;
-    top: 150px;
+    top: 250px;
     height: 50px;
     width: 100%;
 }

@@ -1,7 +1,9 @@
 dino parado: ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, this.x, this.y, this.width, this.height); 
 
 dino correndo: 
-dino 0: ctx.drawImage(SpriteSheet, 1510, 0, 88, 100, this.x, this.y, this.width, this.height); 
+dino 0: ctx.drawImage(SpriteSheet, 1512, 0, 88, 100, 0, 100, 88, 94);
 dino 1: ctx.drawImage(SpriteSheet, 1600, 0, 88, 100, this.x, this.y, this.width, this.height); 
 
 chão:  ctx.drawImage(SpriteSheet, 0, 100, 2404, 50, 0, ctx.canvas.height - 35 , 2404, 35)
+
+cacto: ctx_cactus.drawImage(cactus_img, 650, 0, 50, 110, scroll, 0, 50, 100)
