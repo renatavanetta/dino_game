@@ -7,3 +7,4 @@ dino 1: ctx.drawImage(SpriteSheet, 1600, 0, 88, 100, this.x, this.y, this.width,
 chão:  ctx.drawImage(SpriteSheet, 0, 100, 2404, 50, 0, ctx.canvas.height - 35 , 2404, 35)
 
 cacto: ctx_cactus.drawImage(cactus_img, 650, 0, 50, 110, scroll, 0, 50, 100)
+nuvem: ctx.drawImage(SpriteSheet, 164, 0, 95, 100, 10, 10, 100, 100);

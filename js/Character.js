@@ -14,7 +14,7 @@ export class Character {
         let gravity = 0.5;
         let dinoY = 200;
 
-        function jump() {    
+        function jump() {   
             jumping = true;
             clearInterval(runTime);
 
@@ -23,7 +23,7 @@ export class Character {
                 ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
                 ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, 0, dinoY * gravity, 88, 94);
                 dinoY -= 30;
-                //console.log(dinoY * gravity)
+                
                 if (dinoY * gravity === 25) {
                     clearInterval(upTimer);
                     setTimeout(down, 100);
@@ -35,7 +35,6 @@ export class Character {
                     dinoY += 20;
                     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
                     ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, 0, dinoY * gravity, 88, 94);
-                    //console.log(dinoY * gravity)
                     //verifica se ja esta no chao
                     if (dinoY * gravity === 205) {
                         clearInterval(downTimer)
@@ -72,8 +71,6 @@ export class Character {
                 break;
             }
         })
-
-       // if(dinoY * gravity <= )
     }
 
    /* run(SpriteSheet, jumping) {
