@@ -16,7 +16,6 @@ let ctx = canvas.getContext('2d');
 
 window.onload = function() {
    dino.still();
-   //ctx.drawImage(SpriteSheet, 650, 0, 50, 110, 0, 0, 50, 100)
 }
 
 function startGame() {
@@ -25,22 +24,8 @@ function startGame() {
     Ground();
     Cactus();
 
-    document.addEventListener("keydown", function(event) {
-        switch(event.key){
-            case 'ArrowUp':
-            case ' ': 
-            if(gameStarted == true){
-                if(!jumping){
-                    //jumping = true;
-                    dino.jump(jumping, dino);
-                    break;
-                }
-            }
-        }
-    })
-
-    if(!jumping && !gameOver){
-        //dino.run(SpriteSheet, jumping);
+    if(!gameOver){
+        dino.runAndJump(SpriteSheet);
     }
     
 }  
@@ -104,14 +89,19 @@ function Cactus() {
     
         }
 
-        let cactusTimeOut = setInterval(function() {
+        let cactusTimeOut = setInterval(() => {
             // se a posição do obstaculo for maior que 0 e menor que a posição do dino e o botton do dino estiver abaixo da altura do obstaculo = game over
+            /*if(dino.y > cactus_img.height){
+                console.log(dino.x)
+                console.log(dino.y)
+                console.log(cactus_img.height)
+                clearInterval(cactusTimeOut)
+            }*/
             moveCactus()
         }, 5);
-
-        // gerar cactos aleatoriamente
-        setTimeout(Cactus, randomNumber);
     }
+    // gerar cactos aleatoriamente
+    setTimeout(Cactus, randomNumber);
 }
 
 document.addEventListener("keydown", function(event) {

@@ -6,13 +6,49 @@ export class Character {
         this.height = height;
     }
 
-    run(SpriteSheet, jumping) {
+    runAndJump(SpriteSheet) {
         let canvas = document.getElementById('dino-char');
         let ctx = canvas.getContext('2d');
         let control = false;
+        let jumping = false;
+        let gravity = 0.5;
+        let dinoY = 200;
 
-        function runDino() {
-            console.log('executando run')
+        function jump() {    
+            jumping = true;
+            clearInterval(runTime);
+
+            let upTimer = setInterval(() => {
+                // move up
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, 0, dinoY * gravity, 88, 94);
+                dinoY -= 30;
+                //console.log(dinoY * gravity)
+                if (dinoY * gravity === 25) {
+                    clearInterval(upTimer);
+                    setTimeout(down, 100);
+                }
+            }, 25);
+
+            function down() {
+                let downTimer = setInterval(function () {
+                    dinoY += 20;
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, 0, dinoY * gravity, 88, 94);
+                    //console.log(dinoY * gravity)
+                    //verifica se ja esta no chao
+                    if (dinoY * gravity === 205) {
+                        clearInterval(downTimer)
+                        gravity = 0.5;
+                        dinoY = 200;
+                        jumping = false;
+                        runTime = setInterval(run, 120);
+                    }
+                }, 25)
+            } 
+        }
+
+        function run() {
             if (control == false) {
                 ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
                 ctx.drawImage(SpriteSheet, 1512, 0, 88, 100, 0, 200, 88, 94);
@@ -24,10 +60,47 @@ export class Character {
             }
         }
 
+        let runTime = setInterval(run, 120);
+
+        document.addEventListener("keydown", function (event) {
+            switch (event.key) {
+                case 'ArrowUp':
+                case ' ':
+                    if (!jumping) {
+                        jump(); 
+                    }
+                break;
+            }
+        })
+
+       // if(dinoY * gravity <= )
+    }
+
+   /* run(SpriteSheet, jumping) {
+            let canvas = document.getElementById('dino-char');
+            let ctx = canvas.getContext('2d');
+            let control = false;
+            
+        function runDino() {
+            //console.log('executando run')
+            if (control == false) {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.drawImage(SpriteSheet, 1512, 0, 88, 100, 0, 200, 88, 94);
+                control = true;
+            } else {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                ctx.drawImage(SpriteSheet, 1600, 0, 88, 100, 0, 200, 88, 94);
+                control = false;
+            }
+        }
+        
         let runTime = setInterval(runDino, 120);
 
-        // add event listener, seta para cima ou espaço, jumping = true, executa jump. up e down. 
-        // quando chegar ao solo, jumping = false
+        if(jumping){
+            // jump
+            // jumping = false;
+            // run()
+        }
     }
 
     jump(jumping, dino) {
@@ -37,48 +110,36 @@ export class Character {
         let SpriteSheet = document.getElementById('dinoSpriteSheet');
         let dinoY = 200
 
-        // tentar implementar position ao inves de diny * gravity
-
         function up() {
             // move down
             if (dinoY * gravity === 40) {
                 clearInterval(upTimer)
-
                 setTimeout(() => {
                     let downTimer = setInterval(function () {
-                        console.log('going down')
-                        //gravity += 15;
+                        dinoY += 20;
                         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
                         ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, 0, dinoY * gravity, 88, 94);
-                        dinoY += 20;
-                        console.log(dinoY * gravity)
     
                         //verifica se ja esta no chao
-                        if (dinoY * gravity === 210) {
-                            console.log('entrei aqui')
-                            clearInterval(downTimer)
+                        if (dinoY * gravity === 200) {
+                            clearInterval(downTimer)  
                         }
                     }, 25)
                 }, 100);
-                    
-
             }
 
             // move up
-            console.log('going up')
-            //gravity -= 15;
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
             ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, 0, dinoY * gravity, 88, 94);
             dinoY -= 20;
-            console.log(dinoY * gravity)
         }
 
         let upTimer = setInterval(up, 25);
-    }
+    }*/
 
-    duck() {
+    /*duck() {
 
-    }
+    }*/
 
     still() {
         let dino_canvas = document.getElementById('dino-char');
@@ -87,5 +148,4 @@ export class Character {
 
         ctx.drawImage(SpriteSheet, 1337, 0, 88, 100, this.x, this.y, this.width, this.height);
     }
-
 }
