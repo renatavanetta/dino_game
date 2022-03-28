@@ -8,3 +8,29 @@ chão:  ctx.drawImage(SpriteSheet, 0, 100, 2404, 50, 0, ctx.canvas.height - 35 ,
 
 cacto: ctx_cactus.drawImage(cactus_img, 650, 0, 50, 110, scroll, 0, 50, 100)
 nuvem: ctx.drawImage(SpriteSheet, 164, 0, 95, 100, 10, 10, 100, 100);
+
+
+function CLOUD:
+
+function Cloud() {
+    let canvas = document.getElementById('cloud_img');
+    let ctx = canvas.getContext('2d');
+    let cloud = new Image()
+    cloud.src = '../images/cloud.png';
+
+    cloud.onload = function() {
+        
+        let scroll = scenario_width;
+        let speed = 1;
+
+        function moveCloud() {
+            scroll -= speed;
+            ctx.clearRect(0, 0, scenario_width, scenario_height)
+            ctx.drawImage(cloud, scroll, 20);
+        }
+
+        let cloudTimer = setInterval(moveCloud, 20);
+    }
+    // gerar nuvens aleatoriamente
+    setTimeout(Cloud, 2000);
+}
