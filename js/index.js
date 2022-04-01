@@ -9,7 +9,6 @@ let gameStarted = false;
 
 let SpriteSheet = document.getElementById('dinoSpriteSheet');
 let dino = new Character(0, 200, 88, 94);
-let speed = 20;
 
 window.onload = function() {
    dino.still();
@@ -25,7 +24,6 @@ function startGame() {
     if(!gameOver){
         dino.runAndJump(SpriteSheet);
     }
-    
 }  
 
 function Ground() {

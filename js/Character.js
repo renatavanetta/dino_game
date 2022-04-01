@@ -72,10 +72,6 @@ export class Character {
         })
     }
 
-    /*duck() {
-
-    }*/
-
     still() {
         let dino_canvas = document.getElementById('dino-char');
         let ctx = dino_canvas.getContext('2d');
